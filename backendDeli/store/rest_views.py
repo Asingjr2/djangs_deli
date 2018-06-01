@@ -25,13 +25,13 @@ class DishViewSet(viewsets.ModelViewSet):
     # authentication_classes = ( TokenAuthentication, SessionAuthentication )
     # permission_classes = (IsAuthenticated,)
 
-    def get_queryset(self):
-        query = self.request.GET.get("q")
-        if query:
-            q_set = Dish.objects.filter(dish_name__icontains=query)
-        else:
-            q_set = Dish.objects.all()
-        return q_set
+    # def get_queryset(self):
+    #     query = self.request.GET.get("q")
+    #     if query:
+    #         q_set = Dish.objects.filter(dish_name__icontains=query)
+    #     else:
+    #         q_set = Dish.objects.all()
+    #     return q_set
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
