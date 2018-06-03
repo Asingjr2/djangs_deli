@@ -2,7 +2,7 @@ from django.urls import path, include
 
 from rest_framework import routers 
 
-from store.rest_views import UserViewSet, DishViewSet, CategoryViewSet
+from store.rest_views import UserViewSet, DishViewSet, CategoryViewSet, CustomObtainAuthToken
 
 # Urls do not need entering slack since base ends in slash
 router = routers.DefaultRouter()
@@ -12,7 +12,7 @@ router.register(r"categories", CategoryViewSet)
 
 urlpatterns= [
     path("", include(router.urls)), 
-    # path("authenticate/", CustomObtainAuthToken.as_view()),
+    path("authenticate/", CustomObtainAuthToken.as_view()),
     path("api-login/", include("rest_framework.urls")),
 ]
 

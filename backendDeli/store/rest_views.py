@@ -16,14 +16,15 @@ from .models import Dish, Category
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    # authentication_classes = ( TokenAuthentication)
     # Adding authentication and permission class to restrict access
 
 
 class DishViewSet(viewsets.ModelViewSet):
     queryset = Dish.objects.all()
     serializer_class = DishSerializer
-    # authentication_classes = ( TokenAuthentication, SessionAuthentication )
-    # permission_classes = (IsAuthenticated,)
+    authentication_classes = ( TokenAuthentication, SessionAuthentication )
+    permission_classes = (IsAuthenticated,)
 
     # def get_queryset(self):
     #     query = self.request.GET.get("q")
@@ -44,12 +45,13 @@ class CategoryViewSet(viewsets.ModelViewSet):
 
 # # Creating custom user method to get token.  Can be done different ways
 # # http://www.django-rest-framework.org/api-guide/authentication/#custom-authentication
-# class CustomObtainAuthToken(ObtainAuthToken):
-#     def post(self, request, *args, **kwargs):
-#         response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
-#         token = Token.objects.get(key=response.data["token"])
-#         user = User.objects.get(id=token.user_id)
-#         serializer = UserSerializer(user, many= False)
-#         return Response({
-#             "token": token.key, "user": serializer.data
-#         })
+# Method returns JWT token for use if user login information is valid
+class CustomObtainAuthToken(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        response = super(CustomObtainAuthToken, self).post(request, *args, **kwargs)
+        token = Token.objects.get(key=response.data["token"])
+        user = User.objects.get(id=token.user_id)
+        serializer = UserSerializer(user, many= False)
+        return Response({
+            "token": token.key, "user": serializer.data
+        })
