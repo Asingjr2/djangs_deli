@@ -16,8 +16,6 @@ from .models import Dish, Category
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    # authentication_classes = ( TokenAuthentication)
-    # Adding authentication and permission class to restrict access
 
 
 class DishViewSet(viewsets.ModelViewSet):
@@ -25,14 +23,6 @@ class DishViewSet(viewsets.ModelViewSet):
     serializer_class = DishSerializer
     authentication_classes = ( TokenAuthentication, SessionAuthentication )
     permission_classes = (IsAuthenticated,)
-
-    # def get_queryset(self):
-    #     query = self.request.GET.get("q")
-    #     if query:
-    #         q_set = Dish.objects.filter(dish_categories_set__icontains=query)
-    #     else:
-    #         q_set = Dish.objects.all()
-    #     return q_set
 
 
 class CategoryViewSet(viewsets.ModelViewSet):

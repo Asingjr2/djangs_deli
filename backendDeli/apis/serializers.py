@@ -19,7 +19,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class DishSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Dish
-        fields = ("id","dish_name", "description", "spice", "creator")
+        fields = ("id","dish_name", "description","price", "creator")
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):

@@ -5,7 +5,7 @@ from .models import Dish, Category
 
 @admin.register(Dish) 
 class DishAdmin(admin.ModelAdmin):
-    fields = ("dish_name", "description",  "spice", "creator")
+    fields = ("dish_name", "description", "price", "creator")
     list_display = ["dish_name"]
     search_fields = ("dish_name", "category")
 

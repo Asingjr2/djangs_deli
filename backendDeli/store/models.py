@@ -11,11 +11,13 @@ SPICE_LEVEL = (
     ("INFERNO", "INFERNO" ),
 )
 
+
 class Dish(BaseModel):
     dish_name = models.CharField(max_length= 200)
     description = models.CharField(max_length= 200, default="good food")
-    spice = models.CharField(max_length=10, choices= SPICE_LEVEL, default = "BLAND")
+    # spice = models.CharField(max_length=10, choices= SPICE_LEVEL, default = "BLAND")
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
+    price = models.IntegerField(blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "dishes"
