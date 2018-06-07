@@ -28,7 +28,7 @@ class Dish(BaseModel):
 
 class Category(models.Model):
     slug = models.SlugField(primary_key=True, unique= True)
-    dish = models.ManyToManyField(Dish, blank=True)
+    dish = models.ManyToManyField(Dish, blank=True, related_name="category")
 
     class Meta:
             verbose_name_plural = "categories"

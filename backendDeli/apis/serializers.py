@@ -16,10 +16,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         user = User.objects.create_user(**validated_data)
         return user
 
-class DishSerializer(serializers.HyperlinkedModelSerializer):
+class DishSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dish
-        fields = ("id","dish_name", "description","price", "creator")
+        fields = ("id","dish_name", "description","price", "category", "creator")
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
