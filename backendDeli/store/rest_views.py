@@ -9,8 +9,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import list_route
 
 
-from apis.serializers import UserSerializer, DishSerializer, CategorySerializer
-from .models import Dish, Category
+from apis.serializers import UserSerializer, DishSerializer, CategorySerializer, CartSerializer
+from .models import Dish, Category, Cart
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -21,8 +21,8 @@ class UserViewSet(viewsets.ModelViewSet):
 class DishViewSet(viewsets.ModelViewSet):
     queryset = Dish.objects.all()
     serializer_class = DishSerializer
-    authentication_classes = ( TokenAuthentication, SessionAuthentication )
-    permission_classes = (IsAuthenticated,)
+    # authentication_classes = ( TokenAuthentication, SessionAuthentication )
+    # permission_classes = (IsAuthenticated,)
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -31,6 +31,14 @@ class CategoryViewSet(viewsets.ModelViewSet):
     lookup_field = 'slug'
     authentication_classes = ( TokenAuthentication, SessionAuthentication )
     permission_classes = (IsAuthenticated,)
+
+
+class CartViewSet(viewsets.ModelViewSet): 
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer
+    # authentication_classes = ( TokenAuthentication, SessionAuthentication )
+    # permission_classes = (IsAuthenticated,)
+
 
 
 # # Creating custom user method to get token.  Can be done different ways

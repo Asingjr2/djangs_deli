@@ -35,3 +35,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.slug
+
+
+class Cart(BaseModel): 
+    owner = models.OneToOneField(User, on_delete=models.CASCADE)

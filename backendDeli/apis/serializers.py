@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 
 from rest_framework import serializers
 
-from store.models import Dish, Category
+from store.models import Dish, Category, Cart
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -20,6 +20,7 @@ class DishSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dish
         fields = ("id","dish_name", "description","price", "category", "creator")
+        lookup_field = "pk"
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
@@ -29,3 +30,8 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
         lookup_field = "slug"
 
 
+class CartSerializer(serializers.HyperlinkedModelSerializer): 
+    class Meta: 
+        model = Cart
+        fields = ("id", "owner",)
+        lookup_field = "id"
