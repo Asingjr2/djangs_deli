@@ -39,3 +39,7 @@ class Category(models.Model):
 
 class Cart(BaseModel): 
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
+    items = models.ManyToManyField(Dish, related_name="items", null=True, blank=True)
+
+    def __str__(self):
+        return "Cart of user {}".format(self.owner)

@@ -18,4 +18,4 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin): 
-    fields = ("owner",)
+    fields = ("owner","items")

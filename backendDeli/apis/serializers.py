@@ -30,8 +30,8 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
         lookup_field = "slug"
 
 
-class CartSerializer(serializers.HyperlinkedModelSerializer): 
+class CartSerializer(serializers.ModelSerializer): 
     class Meta: 
         model = Cart
-        fields = ("id", "owner",)
+        fields = ("id", "owner","items",)
         lookup_field = "id"
