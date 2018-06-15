@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics
 from rest_framework.authentication import  TokenAuthentication, SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -8,9 +8,13 @@ from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.decorators import list_route
 
+from drf_multiple_model.mixins import FlatMultipleModelMixin, ObjectMultipleModelMixin
 
-from apis.serializers import UserSerializer, DishSerializer, CategorySerializer, CartSerializer
-from .models import Dish, Category, Cart
+from rest_framework.generics import GenericAPIView
+
+
+from apis.serializers import UserSerializer, DishSerializer, CategorySerializer, CartSerializer, LocationSerializer
+from .models import Dish, Category, Cart, Location
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -39,6 +43,27 @@ class CartViewSet(viewsets.ModelViewSet):
     # authentication_classes = ( TokenAuthentication, SessionAuthentication )
     # permission_classes = (IsAuthenticated,)
 
+
+class LocationViewSet(viewsets.ModelViewSet):
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
+
+
+class CartItemListViewSet(generics.ListAPIView):
+    serializer_class = DishSerializer
+
+    def get_queryset(self): 
+        cartID = self.kwargs['cartID']
+        return Dish.objects.filter(items__id=cartID)
+
+
+class testviewset(generics.UpdateAPIView):
+    serializer_class = CartSerializer
+    queryset = Cart.objects.all()
+    lookup_field = "pk"
+
+    # def get_queryset(self): 
+        # pk = self.kwargs['pk']
 
 
 # # Creating custom user method to get token.  Can be done different ways

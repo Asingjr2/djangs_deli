@@ -43,3 +43,14 @@ class Cart(BaseModel):
 
     def __str__(self):
         return "Cart of user {}".format(self.owner)
+
+class Location(BaseModel):
+    state = models.CharField(max_length=2)
+    store_name = models.CharField(max_length=100, default="new location")
+    address = models.CharField(max_length=100) 
+    established = models.IntegerField(default=2005)
+    best_dish = models.CharField(max_length=100, blank=True, null=True)
+    region = models.CharField(max_length=50, default="East Coast")
+
+    def __str__(self):
+        return "Location is {}".format(self.store_name)

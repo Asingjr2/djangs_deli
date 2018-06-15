@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 
 from rest_framework import serializers
 
-from store.models import Dish, Category, Cart
+from store.models import Dish, Category, Cart, Location
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -35,3 +35,11 @@ class CartSerializer(serializers.ModelSerializer):
         model = Cart
         fields = ("id", "owner","items",)
         lookup_field = "id"
+        extra_kwargs = { "items": {"many": True}}
+
+
+class LocationSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = Location
+        fields = ("id", "state", "store_name", "address", "established", "best_dish", "region")
+   

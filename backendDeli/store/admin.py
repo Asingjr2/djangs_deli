@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 
-from .models import Dish, Category, Cart
+from .models import Dish, Category, Cart, Location
 
 @admin.register(Dish) 
 class DishAdmin(admin.ModelAdmin):
@@ -19,3 +19,6 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin): 
     fields = ("owner","items")
+
+
+admin.site.register(Location)
