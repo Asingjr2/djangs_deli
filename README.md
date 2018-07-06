@@ -22,4 +22,5 @@ python manage.py runserver
 ```bash
 cd into "ngClient"
 npm install
+ng serve
 ```
