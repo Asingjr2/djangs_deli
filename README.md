@@ -1,6 +1,6 @@
 # DJANG'S DELI
 
-Sample Deli App that displays menu items and store locations.  Project uses both Django and Angular version 5 so both must be installed. 
+Sample Deli App that displays menu items and store locations.  Project uses both Django and Angular version 5.2.0 (with cli version 1.7.3) so both must be installed. Documentation on downloading Angular can be found at https://angular.io/guide/quickstart. 
 
 
 __Features in development include:__
